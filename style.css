@@ -1,0 +1,37 @@
+
+#dashboard-header {
+    color: white;
+    background-color: #343a40;
+    height: 75px;
+    padding: 10px;
+}
+
+#search-background {
+    background-color: #f8f9fa; */
+}
+
+#search-label {
+    font-size: larger;
+    font-weight: bold;
+}
+
+#aside-row {
+    position: fixed;
+}
+
+#weather-details {
+    position: relative;
+    margin-top: 15px;
+    margin-left: 350px;
+    border: solid;
+    border-width: 1px;
+    border-color: lightgrey;
+}
+
+#city-title {
+    margin: 20px 0px 20px 5px;
+}
+
+#results-line {
+    margin: 0px 0px 5px 5px;
+}
