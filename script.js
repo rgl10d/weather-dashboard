@@ -29,13 +29,13 @@ $(document).ready(function(){
         }).then(function(response){
 
             //Defining variables
-            var iconImg = $("<img src=http://openweathermap.org/img/wn/" + response.weather[0].icon + ".png>");
+            var iconImg = $("<img src= https://openweathermap.org/img/wn/" + response.weather[0].icon + ".png>");
             var latitude = response.coord.lat;
             var longitude = response.coord.lon;
-            var uvURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" 
+            var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" 
                          + latitude + "&lon="
                          + longitude + "&appid=c683bc51fb96f85dead080d9ec469b07";
-            var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q="
+            var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q="
                              + cityName + "&units=imperial&appid=c683bc51fb96f85dead080d9ec469b07";
             
             //Populating the elements with the searched city name's weather
