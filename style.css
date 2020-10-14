@@ -7,7 +7,7 @@
 }
 
 #search-background {
-    background-color: #f8f9fa; */
+    background-color: #f8f9fa;
 }
 
 #search-label {
@@ -28,16 +28,39 @@
     border-color: lightgrey;
 }
 
-#city-title {
+#city-name {
     margin: 20px 0px 20px 5px;
 }
 
-#results-line {
-    margin: 0px 0px 5px 5px;
+.results-line {
+    margin: 0px 0px 12px 5px;
 }
 
 #five-day {
     position: relative;
     margin-top: 15px;
     margin-left: 350px;
+}
+
+#five-day-title {
+    padding-left: 0px;
+}
+
+.forecast {
+     height: 175px;
+     width: 130px;
+     background-color: #007bff;
+     margin: 10px 25px 0px 0px;
+}
+
+.forecast-date {
+    color: white;
+    margin: 10px 0px 0px 15px;
+}
+
+.forecast-details {
+    color: white;
+    font-size: 90%;
+    margin-left: 10px;
+
 }
