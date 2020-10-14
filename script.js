@@ -50,6 +50,18 @@ $(document).ready(function(){
                 method: "GET"
             }).then(function(response){
                 $("#uv-index").html("UV Index: <span id='uv-num'>" + response.value + "</span>");
+                var uvParse = JSON.parse(response.value);
+
+                // If else statement to determine background color of the uv index
+                if(uvParse < 3){
+                    $("#uv-num").css("background-color", "green")
+                } else if (uvParse >= 3.00 && uvParse < 6.00){
+                    $("#uv-num").css("background-color", "yellow")
+                } else if (uvParse >= 6.00 && uvParse < 8.00){
+                    $("#uv-num").css("background-color", "orange")
+                } else if (uvParse >= 8.00 && uvParse <= 10.00){
+                    $("#uv-num").css("background-color", "red")
+                }
             })
 
             $.ajax({
