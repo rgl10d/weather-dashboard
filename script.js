@@ -1,8 +1,7 @@
 $(document).ready(function(){
 
-    //DOM Variables
     var searchBtn = $("#search-button");
-    //JS Variables
+    var searchAside = $("#aside-row");
     var now = moment().format("MM/DD/YYYY");
     var nextFive = [moment().add(1, "days").format("MM/DD/YYYY"),
                     moment().add(2, "days").format("MM/DD/YYYY"),
@@ -10,18 +9,19 @@ $(document).ready(function(){
                     moment().add(4, "days").format("MM/DD/YYYY"),
                     moment().add(5, "days").format("MM/DD/YYYY")
                 ];
-    //Function Definitons
-   
-    //Function Calls
-    
-    //Event Listeners
 
+    //On click event that retrieves and displays all weather data
     $(searchBtn).on("click", function(){
         var cityName = $("#search-bar").val();
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="
                        + cityName + "&units=imperial&appid=c683bc51fb96f85dead080d9ec469b07";
-        
-        
+        localStorage.setItem("City", cityName);
+        var pastSearchEl = $("<div>").attr("class", "col-sm-12");
+        var pastSearchBtn = $("<button>").attr("class", "past-search").text(cityName);
+
+        searchAside.append(pastSearchEl);
+        pastSearchEl.append(pastSearchBtn);
+
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -36,17 +36,16 @@ $(document).ready(function(){
             var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q="
                              + cityName + "&units=imperial&appid=c683bc51fb96f85dead080d9ec469b07";
             console.log(iconImg);
-            $("#city").html("<h3>" + response.name + " (" + now + ") " + iconImg + "</h3>");
+            $("#city-name").html("<h3>" + response.name + " (" + now + ") " + iconImg + "</h3>");
             $("#temperature").text("Temperature: " + response.main.temp + " °F");
             $("#humidity").text("Humidity: " + response.main.humidity + "%");
             $("#wind-speed").text("Wind Speed: " + response.wind.speed + " MPH");
-            $("#uv-index").text("UV Index: " + response);
 
             $.ajax({
                 url: uvURL,
                 method: "GET"
             }).then(function(response){
-                $("#uv-index").text("UV Index: " + response.value);
+                $("#uv-index").html("UV Index: <span id='uv-num'>" + response.value + "</span>");
             })
 
             $.ajax({
@@ -54,18 +53,33 @@ $(document).ready(function(){
                 method: "GET"
             }).then(function(response){
                 console.log(response);
+
+                //Clears out the boxes when another search occurs
+                $("#five-day").empty();
+
+                //The "5-Day Forecast" text
+                var forecastRow = $("#five-day");
+                var fiveTitleEl = $("<div>").attr({
+                    "class": "col-sm-12",
+                    "id": "five-day-title"
+                });
+                var fiveHeader = $("<h4>").text("5-Day Forecast");
+
+                forecastRow.append(fiveTitleEl);
+                fiveTitleEl.append(fiveHeader);
+
+                //Function to create the forecast boxes
                 function forecastRender(){
                     for(var i = 0; i < 5; i++){
                         var boxID = "box" + i;
-                        var forecastRow = $("#five-day");
                         var forecastBox = $("<div>")
                         .attr({
-                            "class": "forecast",
+                            "class": "forecast-box",
                             "id": boxID
                         });
                         var forecastDate = $("<h5>").attr("class", "forecast-date").text(nextFive[i]);
                         // var forecastIcon;
-                        var forecastTemp = $("<p>").attr("class", "forecast-details").text("Temperature: " + response.list[i].main.temp + " °F");
+                        var forecastTemp = $("<p>").attr("class", "forecast-details").text("Temp: " + response.list[i].main.temp + " °F");
                         var forecastHumid = $("<p>").attr("class", "forecast-details").text("Humidity: " + response.list[i].main.humidity + "%");
             
             
@@ -77,7 +91,7 @@ $(document).ready(function(){
                     }
                 }
 
-
+                //Forecast box function call
                 forecastRender();
             })
 
