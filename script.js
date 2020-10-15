@@ -10,7 +10,7 @@ $(document).ready(function(){
                     ];
 
     //On click event on the search button
-    $(searchBtn).on("click", function(){
+    $(searchBtn).on("click", function getweather (){
         var cityName = $("#search-bar").val();
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="
                        + cityName + "&units=imperial&appid=c683bc51fb96f85dead080d9ec469b07";
@@ -64,6 +64,8 @@ $(document).ready(function(){
                 }
             })
 
+
+            //Five Day Forecast AJAX API call
             $.ajax({
                 url: fiveDayURL,
                 method: "GET"
@@ -106,15 +108,11 @@ $(document).ready(function(){
             
                     }
                 }
-
                 //Forecast box function call
                 forecastRender();
             })
-
         })
-
-    
     })
 
-
+    $()
 })
