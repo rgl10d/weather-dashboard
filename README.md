@@ -13,7 +13,7 @@ that day; they mean the following:
 - Red: Index ranges from 8-10.
 
 ## Website Link
-[Work Day Scheduler](https://rgl10d.github.io/weather-dashboard/)
+[Weather Dashboard](https://rgl10d.github.io/weather-dashboard/)
 
 ## License
 MIT License
